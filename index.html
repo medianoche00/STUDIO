@@ -1,0 +1,2565 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Captura Momentos | Fotografía y Video Profesional en Piura</title>
+    <meta name="description" content="Fotografía y video profesional para bodas, quinceaños, bautizos y eventos en Piura. Capturamos tus momentos más especiales.">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #d4a574;
+            --secondary: #2c2c2c;
+            --light: #f9f6f2;
+            --dark: #1a1a1a;
+            --accent: #e8d5c4;
+            --gold: #c9a227;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
+            color: var(--secondary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* PRELOADER */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+
+        .preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .preloader-content {
+            text-align: center;
+        }
+
+        .preloader-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(212, 165, 116, 0.3);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* NAVEGACIÓN */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: transparent;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+
+        nav.scrolled {
+            background: rgba(26, 26, 26, 0.98);
+            padding: 1rem 5%;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 400;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 100%);
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 0 2rem;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(212, 165, 116, 0.2);
+            border: 1px solid var(--primary);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease 0.2s both;
+            line-height: 1.2;
+        }
+
+        .hero-content h1 span {
+            color: var(--primary);
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            font-weight: 300;
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 1s ease 0.4s both;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2.5rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: 2px solid var(--primary);
+        }
+
+        .btn:hover {
+            background: transparent;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(212, 165, 116, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--dark);
+            border-color: white;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator i {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-15px); }
+            60% { transform: translateX(-50%) translateY(-7px); }
+        }
+
+        /* SECCIONES GENERALES */
+        section {
+            padding: 7rem 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title span {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title p {
+            color: #777;
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* STATS BAR */
+        .stats-bar {
+            background: var(--dark);
+            padding: 4rem 5%;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            text-align: center;
+            color: white;
+        }
+
+        .stat-item i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            color: #aaa;
+            font-size: 0.95rem;
+        }
+
+        /* SERVICIOS */
+        .servicios {
+            background: white;
+        }
+
+        .servicios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .servicio-card {
+            background: var(--light);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s;
+            position: relative;
+        }
+
+        .servicio-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+
+        .servicio-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .servicio-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .servicio-card:hover .servicio-img img {
+            transform: scale(1.1);
+        }
+
+        .servicio-content {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .servicio-content i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .servicio-content h3 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .servicio-content p {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .precio {
+            font-size: 1.8rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .precio span {
+            font-size: 0.9rem;
+            color: #999;
+            font-weight: 400;
+        }
+
+        /* POR QUÉ ELEGIRNOS */
+        .porque-elegirnos {
+            background: linear-gradient(135deg, var(--accent) 0%, #f5ebe0 100%);
+        }
+
+        .porque-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .porque-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+
+        .porque-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .porque-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary) 0%, #c49660 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+
+        .porque-icon i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .porque-card h3 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .porque-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* GALERÍA */
+        .galeria {
+            background: var(--dark);
+            color: white;
+        }
+
+        .galeria .section-title h2 {
+            color: white;
+        }
+
+        .galeria-filtros {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filtro-btn {
+            padding: 0.7rem 1.5rem;
+            background: transparent;
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: inherit;
+            font-size: 0.95rem;
+        }
+
+        .filtro-btn:hover,
+        .filtro-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .galeria-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            cursor: pointer;
+            height: 300px;
+        }
+
+        .galeria-item.grande {
+            grid-row: span 2;
+            height: 100%;
+        }
+
+        .galeria-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s;
+        }
+
+        .galeria-item:hover img {
+            transform: scale(1.15);
+        }
+
+        .galeria-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 2rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .galeria-item:hover .galeria-overlay {
+            opacity: 1;
+        }
+
+        .galeria-overlay i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .galeria-overlay h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+        }
+
+        .galeria-overlay span {
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+
+        /* LIGHTBOX */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            padding: 2rem;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 85vh;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .lightbox-close:hover {
+            color: var(--primary);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2.5rem;
+            color: white;
+            cursor: pointer;
+            padding: 1rem;
+            transition: all 0.3s;
+        }
+
+        .lightbox-nav:hover {
+            color: var(--primary);
+        }
+
+        .lightbox-prev {
+            left: -80px;
+        }
+
+        .lightbox-next {
+            right: -80px;
+        }
+
+        .lightbox-info {
+            text-align: center;
+            margin-top: 1rem;
+            color: white;
+        }
+
+        .lightbox-info h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .lightbox-info span {
+            color: var(--primary);
+        }
+
+        /* PROCESO DE TRABAJO */
+        .proceso {
+            background: white;
+        }
+
+        .proceso-timeline {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .proceso-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 100%;
+            background: var(--primary);
+        }
+
+        .proceso-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 50%;
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .proceso-item:nth-child(even) {
+            justify-content: flex-start;
+            padding-right: 0;
+            padding-left: 50%;
+        }
+
+        .proceso-content {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 400px;
+            margin-right: 30px;
+            position: relative;
+        }
+
+        .proceso-item:nth-child(even) .proceso-content {
+            margin-right: 0;
+            margin-left: 30px;
+        }
+
+        .proceso-number {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+            z-index: 1;
+        }
+
+        .proceso-content h3 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .proceso-content p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* SOBRE MÍ */
+        .sobre-mi {
+            background: var(--accent);
+        }
+
+        .sobre-mi-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .sobre-mi-img {
+            position: relative;
+        }
+
+        .sobre-mi-img img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+        }
+
+        .sobre-mi-img::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: 20px;
+            bottom: 20px;
+            border: 3px solid var(--primary);
+            border-radius: 20px;
+            z-index: -1;
+        }
+
+        .experiencia-badge {
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            width: 150px;
+            height: 150px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 10px 30px rgba(212, 165, 116, 0.5);
+        }
+
+        .experiencia-badge h3 {
+            font-size: 3rem;
+            font-family: 'Playfair Display', serif;
+            line-height: 1;
+        }
+
+        .experiencia-badge p {
+            font-size: 0.85rem;
+            text-align: center;
+        }
+
+        .sobre-mi-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .sobre-mi-text p {
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        .features-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .feature-item i {
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        /* TESTIMONIOS */
+        .testimonios {
+            background: white;
+        }
+
+        .testimonios-slider {
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .testimonios-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .testimonio-card {
+            min-width: 100%;
+            padding: 0 2rem;
+        }
+
+        .testimonio-content {
+            background: var(--light);
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .testimonio-content .stars {
+            color: #ffc107;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonio-content blockquote {
+            font-size: 1.3rem;
+            font-style: italic;
+            color: #555;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .testimonio-autor {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .testimonio-autor img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary);
+        }
+
+        .testimonio-autor-info h4 {
+            font-size: 1.1rem;
+            color: var(--dark);
+        }
+
+        .testimonio-autor-info span {
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+
+        .testimonios-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.7rem;
+            margin-top: 2rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .dot.active {
+            background: var(--primary);
+            transform: scale(1.2);
+        }
+
+        /* PAQUETES */
+        .paquetes {
+            background: linear-gradient(135deg, var(--dark) 0%, #2c2c2c 100%);
+            color: white;
+        }
+
+        .paquetes .section-title h2 {
+            color: white;
+        }
+
+        .paquetes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .paquete-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 25px;
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .paquete-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--primary);
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+
+        .paquete-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .paquete-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 50px rgba(212, 165, 116, 0.2);
+        }
+
+        .paquete-card.destacado {
+            background: linear-gradient(135deg, var(--primary) 0%, #c49660 100%);
+            transform: scale(1.05);
+            border: none;
+        }
+
+        .paquete-card.destacado::before {
+            display: none;
+        }
+
+        .paquete-card.destacado:hover {
+            transform: scale(1.08);
+        }
+
+        .paquete-badge {
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            background: var(--gold);
+            color: white;
+            padding: 0.5rem 3rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transform: rotate(45deg);
+            text-transform: uppercase;
+        }
+
+        .paquete-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .paquete-card .subtitulo {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .paquete-card .precio-paquete {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin: 1.5rem 0;
+            line-height: 1;
+        }
+
+        .paquete-card .precio-paquete span {
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        .paquete-card ul {
+            list-style: none;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .paquete-card ul li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .paquete-card ul li i {
+            color: var(--primary);
+            width: 20px;
+        }
+
+        .paquete-card.destacado ul li i {
+            color: white;
+        }
+
+        .paquete-card ul li i.fa-times {
+            color: #666;
+        }
+
+        .btn-paquete {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .btn-paquete:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .paquete-card.destacado .btn-paquete {
+            background: white;
+            color: var(--primary);
+            border-color: white;
+        }
+
+        .paquete-card.destacado .btn-paquete:hover {
+            background: transparent;
+            color: white;
+            border-color: white;
+        }
+
+        /* FAQ */
+        .faq {
+            background: var(--light);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .faq-question {
+            padding: 1.5rem 2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .faq-question:hover {
+            color: var(--primary);
+        }
+
+        .faq-question i {
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-answer p {
+            padding: 0 2rem 1.5rem;
+            color: #666;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+        }
+
+        /* CONTACTO */
+        .contacto {
+            background: white;
+        }
+
+        .contacto-container {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contacto-info {
+            background: var(--dark);
+            color: white;
+            padding: 3rem;
+            border-radius: 25px;
+        }
+
+        .contacto-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .contacto-info > p {
+            color: #aaa;
+            margin-bottom: 2.5rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-item i {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .info-item div h4 {
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .info-item div span {
+            color: #aaa;
+            font-size: 0.95rem;
+        }
+
+        .redes-sociales {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2.5rem;
+        }
+
+        .redes-sociales a {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        .redes-sociales a:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .contacto-form {
+            background: var(--light);
+            padding: 3rem;
+            border-radius: 25px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid #e5e5e5;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(212, 165, 116, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 130px;
+        }
+
+        .btn-enviar {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, #c49660 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.7rem;
+        }
+
+        .btn-enviar:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(212, 165, 116, 0.4);
+        }
+
+        /* MAPA */
+        .mapa {
+            padding: 0;
+            height: 400px;
+        }
+
+        .mapa iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 5rem 5% 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto 3rem;
+        }
+
+        .footer-brand .logo {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .footer-brand p {
+            color: #aaa;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section ul li a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--primary);
+        }
+
+        .footer-section ul li i {
+            margin-right: 0.5rem;
+            color: var(--primary);
+        }
+
+        .footer-newsletter input {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            font-family: inherit;
+        }
+
+        .footer-newsletter button {
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .footer-newsletter button:hover {
+            background: #c49660;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom p {
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-social a {
+            color: #aaa;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .footer-social a:hover {
+            color: var(--primary);
+        }
+
+        /* WHATSAPP Y SCROLL TOP */
+        .floating-buttons {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 999;
+        }
+
+        .whatsapp-float,
+        .scroll-top {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            text-decoration: none;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+        }
+
+        .whatsapp-float {
+            background: #25d366;
+            color: white;
+            animation: pulse 2s infinite;
+        }
+
+        .scroll-top {
+            background: var(--primary);
+            color: white;
+            opacity: 0;
+            visibility: hidden;
+            cursor: pointer;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .whatsapp-float:hover,
+        .scroll-top:hover {
+            transform: translateY(-5px);
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+            50% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+        }
+
+        /* ANIMACIONES AL SCROLL */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: var(--dark);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 2rem;
+                gap: 2rem;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+            }
+
+            .nav-links.active {
+                transform: translateX(0);
+            }
+
+            .nav-links a {
+                font-size: 1.5rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .sobre-mi-content,
+            .contacto-container {
+                grid-template-columns: 1fr;
+            }
+
+            .sobre-mi-img::before {
+                display: none;
+            }
+
+            .experiencia-badge {
+                width: 120px;
+                height: 120px;
+                right: 10px;
+                bottom: -20px;
+            }
+
+            .experiencia-badge h3 {
+                font-size: 2.5rem;
+            }
+
+            .proceso-timeline::before {
+                left: 20px;
+            }
+
+            .proceso-item,
+            .proceso-item:nth-child(even) {
+                padding-left: 60px;
+                padding-right: 0;
+                justify-content: flex-start;
+            }
+
+            .proceso-content,
+            .proceso-item:nth-child(even) .proceso-content {
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+            .proceso-number {
+                left: 20px;
+                transform: translateX(-50%);
+            }
+
+            .paquete-card.destacado {
+                transform: scale(1);
+            }
+
+            .paquete-card.destacado:hover {
+                transform: translateY(-10px);
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .galeria-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .galeria-item.grande {
+                grid-row: auto;
+            }
+
+            .lightbox-prev {
+                left: 10px;
+            }
+
+            .lightbox-next {
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PRELOADER -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-content">
+            <div class="preloader-logo">
+                <i class="fas fa-camera"></i> Captura Momentos
+            </div>
+            <div class="loader"></div>
+        </div>
+    </div>
+
+    <!-- NAVEGACIÓN -->
+    <nav id="navbar">
+        <a href="#" class="logo"><i class="fas fa-camera"></i> Captura Momentos</a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#inicio" onclick="toggleMenu()">Inicio</a></li>
+            <li><a href="#servicios" onclick="toggleMenu()">Servicios</a></li>
+            <li><a href="#galeria" onclick="toggleMenu()">Galería</a></li>
+            <li><a href="#sobre" onclick="toggleMenu()">Nosotros</a></li>
+            <li><a href="#paquetes" onclick="toggleMenu()">Paquetes</a></li>
+            <li><a href="#contacto" onclick="toggleMenu()">Contacto</a></li>
+        </ul>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+        <video autoplay muted loop playsinline class="hero-video" poster="https://images.unsplash.com/photo-1519741497674-611481863552?w=1920">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-bride-and-groom-in-a-romantic-moment-42133-large.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-award"></i> Más de 500 eventos capturados
+            </div>
+            <h1>Capturamos tus <span>momentos</span> más especiales</h1>
+            <p>Fotografía y video profesional para bodas, quinceaños, bautizos y todo tipo de eventos en Piura</p>
+            <div class="hero-buttons">
+                <a href="#contacto" class="btn"><i class="fas fa-calendar-check"></i> Reserva tu Fecha</a>
+                <a href="#galeria" class="btn btn-outline"><i class="fas fa-images"></i> Ver Galería</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- STATS BAR -->
+    <section class="stats-bar">
+        <div class="stats-container">
+            <div class="stat-item fade-in">
+                <i class="fas fa-camera-retro"></i>
+                <h3 class="counter" data-target="500">0</h3>
+                <p>Eventos Capturados</p>
+            </div>
+            <div class="stat-item fade-in">
+                <i class="fas fa-heart"></i>
+                <h3 class="counter" data-target="350">0</h3>
+                <p>Bodas Fotografiadas</p>
+            </div>
+            <div class="stat-item fade-in">
+                <i class="fas fa-users"></i>
+                <h3 class="counter" data-target="1000">0</h3>
+                <p>Clientes Felices</p>
+            </div>
+            <div class="stat-item fade-in">
+                <i class="fas fa-star"></i>
+                <h3 class="counter" data-target="8">0</h3>
+                <p>Años de Experiencia</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section class="servicios" id="servicios">
+        <div class="section-title fade-in">
+            <span>Nuestros Servicios</span>
+            <h2>¿Qué Ofrecemos?</h2>
+            <p>Servicios profesionales de fotografía y video para cada ocasión especial de tu vida</p>
+        </div>
+        <div class="servicios-grid">
+            <div class="servicio-card fade-in">
+                <div class="servicio-img">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600" alt="Bodas">
+                </div>
+                <div class="servicio-content">
+                    <i class="fas fa-heart"></i>
+                    <h3>Bodas</h3>
+                    <p>Capturamos cada momento mágico de tu día especial, desde los preparativos hasta la última canción de la fiesta.</p>
+                    <div class="precio">Desde S/ 1,800 <span>soles</span></div>
+                </div>
+            </div>
+            <div class="servicio-card fade-in">
+                <div class="servicio-img">
+                    <img src="https://images.unsplash.com/photo-1519340241574-2cec6aef0c01?w=600" alt="Quinceaños">
+                </div>
+                <div class="servicio-content">
+                    <i class="fas fa-crown"></i>
+                    <h3>Quinceaños</h3>
+                    <p>Inmortalizamos esta celebración única con fotografías y videos espectaculares que recordarás por siempre.</p>
+                    <div class="precio">Desde S/ 1,200 <span>soles</span></div>
+                </div>
+            </div>
+            <div class="servicio-card fade-in">
+                <div class="servicio-img">
+                    <img src="https://images.unsplash.com/photo-1544776193-352d25ca82cd?w=600" alt="Bautizos">
+                </div>
+                <div class="servicio-content">
+                    <i class="fas fa-baby"></i>
+                    <h3>Bautizos</h3>
+                    <p>Guardamos los recuerdos de este momento sagrado con delicadeza, profesionalismo y mucho cariño.</p>
+                    <div class="precio">Desde S/ 700 <span>soles</span></div>
+                </div>
+            </div>
+            <div class="servicio-card fade-in">
+                <div class="servicio-img">
+                    <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600" alt="Cumpleaños">
+                </div>
+                <div class="servicio-content">
+                    <i class="fas fa-birthday-cake"></i>
+                    <h3>Cumpleaños</h3>
+                    <p>Fotografía y video de fiestas de cumpleaños para todas las edades. ¡Que ningún momento se pierda!</p>
+                    <div class="precio">Desde S/ 500 <span>soles</span></div>
+                </div>
+            </div>
+            <div class="servicio-card fade-in">
+                <div class="servicio-img">
+                    <img src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?w=600" alt="Graduaciones">
+                </div>
+                <div class="servicio-content">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Graduaciones</h3>
+                    <p>Celebra tus logros académicos con sesiones fotográficas profesionales que demuestren tu orgullo.</p>
+                    <div class="precio">Desde S/ 350 <span>soles</span></div>
+                </div>
+            </div>
+            <div class="servicio-card fade-in">
+                <div class="servicio-img">
+                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600" alt="Corporativos">
+                </div>
+                <div class="servicio-content">
+                    <i class="fas fa-building"></i>
+                    <h3>Eventos Corporativos</h3>
+                    <p>Cobertura profesional para conferencias, lanzamientos, aniversarios y eventos empresariales.</p>
+                    <div class="precio">Desde S/ 1,000 <span>soles</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- POR QUÉ ELEGIRNOS -->
+    <section class="porque-elegirnos">
+        <div class="section-title fade-in">
+            <span>Nuestra Diferencia</span>
+            <h2>¿Por Qué Elegirnos?</h2>
+            <p>Nos dedicamos a crear recuerdos que durarán toda la vida</p>
+        </div>
+        <div class="porque-grid">
+            <div class="porque-card fade-in">
+                <div class="porque-icon">
+                    <i class="fas fa-medal"></i>
+                </div>
+                <h3>Calidad Premium</h3>
+                <p>Utilizamos equipo profesional de última generación para garantizar resultados excepcionales.</p>
+            </div>
+            <div class="porque-card fade-in">
+                <div class="porque-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3>Entrega Rápida</h3>
+                <p>Recibirás tus fotos y videos editados en tiempo récord sin sacrificar la calidad.</p>
+            </div>
+            <div class="porque-card fade-in">
+                <div class="porque-icon">
+                    <i class="fas fa-hand-holding-heart"></i>
+                </div>
+                <h3>Trato Personalizado</h3>
+                <p>Cada cliente es único. Adaptamos nuestros servicios a tus necesidades específicas.</p>
+            </div>
+            <div class="porque-card fade-in">
+                <div class="porque-icon">
+                    <i class="fas fa-money-bill-wave"></i>
+                </div>
+                <h3>Precios Justos</h3>
+                <p>Ofrecemos la mejor relación calidad-precio del mercado piurano.</p>
+            </div>
+            <div class="porque-card fade-in">
+                <div class="porque-icon">
+                    <i class="fas fa-sync-alt"></i>
+                </div>
+                <h3>Edición Profesional</h3>
+                <p>Retoque y edición profesional de todas las fotografías y videos incluidos.</p>
+            </div>
+            <div class="porque-card fade-in">
+                <div class="porque-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Respaldo Seguro</h3>
+                <p>Tus archivos están seguros con nosotros. Guardamos respaldos por 2 años.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERÍA -->
+    <section class="galeria" id="galeria">
+        <div class="section-title fade-in">
+            <span>Nuestro Portfolio</span>
+            <h2>Galería de Trabajos</h2>
+            <p>Un vistazo a algunos de nuestros mejores momentos capturados</p>
+        </div>
+        <div class="galeria-filtros fade-in">
+            <button class="filtro-btn active" data-filter="todos">Todos</button>
+            <button class="filtro-btn" data-filter="bodas">Bodas</button>
+            <button class="filtro-btn" data-filter="quinceanios">Quinceaños</button>
+            <button class="filtro-btn" data-filter="bautizos">Bautizos</button>
+            <button class="filtro-btn" data-filter="eventos">Eventos</button>
+        </div>
+        <div class="galeria-grid">
+            <div class="galeria-item grande fade-in" data-category="bodas" onclick="openLightbox(0)">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800" alt="Boda elegante">
+                <div class="galeria-overlay">
+                    <i class="fas fa-expand"></i>
+                    <h4>Boda María & Carlos</h4>
+                    <span>Piura, 2024</span>
+                </div>
+            </div>
+            <div class="galeria-item fade-in" data-category="quinceanios" onclick="openLightbox(1)">
+                <img src="https://images.unsplash.com/photo-1519340241574-2cec6aef0c01?w=800" alt="Quinceaños">
+                <div class="galeria-overlay">
+                    <i class="fas fa-expand"></i>
+                    <h4>XV Años Luciana</h4>
+                    <span>Piura, 2024</span>
+                </div>
+            </div>
+            <div class="galeria-item fade-in" data-category="bodas" onclick="openLightbox(2)">
+                <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800" alt="Ceremonia">
+                <div class="galeria-overlay">
+                    <i class="fas fa-expand"></i>
+                    <h4>Ceremonia Rosa & Pedro</h4>
+                    <span>Piura, 2024</span>
+                </div>
+            </div>
+            <div class="galeria-item fade-in" data-category="bautizos" onclick="openLightbox(3)">
+                <img src="https://images.unsplash.com/photo-1544776193-352d25ca82cd?w=800" alt="Bautizo">
+                <div class="galeria-overlay">
+                    <i class="fas fa-expand"></i>
+                    <h4>Bautizo Matías</h4>
+                    <span>Piura, 2024</span>
+                </div>
+            </div>
+            <div class="galeria-item grande fade-in" data-category="eventos" onclick="openLightbox(4)">
+                <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800" alt="Evento corporativo">
+                <div class="galeria-overlay">
+                    <i class="fas fa-expand"></i>
+                    <h4>Evento Empresarial</h4>
+                    <span>Piura, 2024</span>
+                </div>
+            </div>
+            <div class="galeria-item fade-in" data-category="bodas" onclick="openLightbox(5)">
+                <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800" alt="Recepción boda">
+                <div class="galeria-overlay">
+                    <i class="fas fa-expand"></i>
+                    <h4>Recepción Ana & Luis</h4>
+                    <span>Piura, 2024</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <span class="lightbox-close" onclick="closeLightbox()"><i class="fas fa-times"></i></span>
+            <span class="lightbox-nav lightbox-prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></span>
+            <img src="" alt="Imagen ampliada" id="lightbox-img">
+            <span class="lightbox-nav lightbox-next" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></span>
+            <div class="lightbox-info">
+                <h4 id="lightbox-title"></h4>
+                <span id="lightbox-desc"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROCESO DE TRABAJO -->
+    <section class="proceso">
+        <div class="section-title fade-in">
+            <span>Cómo Trabajamos</span>
+            <h2>Nuestro Proceso</h2>
+            <p>Te acompañamos en cada paso para que tu experiencia sea perfecta</p>
+        </div>
+        <div class="proceso-timeline">
+            <div class="proceso-item fade-in">
+                <div class="proceso-number">1</div>
+                <div class="proceso-content">
+                    <h3><i class="fas fa-comments"></i> Consulta Inicial</h3>
+                    <p>Conversamos sobre tu evento, tus expectativas y el estilo que deseas. ¡Sin compromiso!</p>
+                </div>
+            </div>
+            <div class="proceso-item fade-in">
+                <div class="proceso-number">2</div>
+                <div class="proceso-content">
+                    <h3><i class="fas fa-file-contract"></i> Propuesta y Reserva</h3>
+                    <p>Te enviamos una propuesta personalizada. Con el 50% de adelanto, reservamos tu fecha.</p>
+                </div>
+            </div>
+            <div class="proceso-item fade-in">
+                <div class="proceso-number">3</div>
+                <div class="proceso-content">
+                    <h3><i class="fas fa-camera"></i> El Gran Día</h3>
+                    <p>Llegamos temprano, capturamos cada momento especial con pasión y profesionalismo.</p>
+                </div>
+            </div>
+            <div class="proceso-item fade-in">
+                <div class="proceso-number">4</div>
+                <div class="proceso-content">
+                    <h3><i class="fas fa-magic"></i> Edición Profesional</h3>
+                    <p>Seleccionamos las mejores tomas y aplicamos nuestra edición profesional característica.</p>
+                </div>
+            </div>
+            <div class="proceso-item fade-in">
+                <div class="proceso-number">5</div>
+                <div class="proceso-content">
+                    <h3><i class="fas fa-gift"></i> Entrega Final</h3>
+                    <p>Recibes todas las fotos editadas, el video y los extras de tu paquete. ¡A disfrutar!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOBRE MÍ -->
+    <section class="sobre-mi" id="sobre">
+        <div class="sobre-mi-content">
+            <div class="sobre-mi-img fade-in">
+                <img src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?w=600" alt="Fotógrafo profesional">
+                <div class="experiencia-badge">
+                    <h3>8+</h3>
+                    <p>Años de<br>experiencia</p>
+                </div>
+            </div>
+            <div class="sobre-mi-text fade-in">
+                <span style="display: inline-block; background: var(--primary); color: white; padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.85rem; margin-bottom: 1rem;">Sobre Nosotros</span>
+                <h2>Pasión por Capturar Momentos</h2>
+                <p>Somos un equipo de fotógrafos y videógrafos profesionales con más de 8 años de experiencia capturando los momentos más importantes en la vida de nuestros clientes en Piura y todo el norte del Perú.</p>
+                <p>Nuestra pasión es contar historias a través de imágenes, creando recuerdos que durarán para siempre. Cada evento es único y nos dedicamos a capturar su esencia de manera auténtica y emotiva.</p>
+                <div class="features-list">
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Equipo profesional</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Edición cinematográfica</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Entrega en USB y nube</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Drone disponible</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Álbumes premium</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Cobertura regional</span>
+                    </div>
+                </div>
+                <a href="#contacto" class="btn" style="margin-top: 1rem;"><i class="fas fa-phone"></i> Contáctanos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIOS -->
+    <section class="testimonios">
+        <div class="section-title fade-in">
+            <span>Testimonios</span>
+            <h2>Lo Que Dicen Nuestros Clientes</h2>
+            <p>La satisfacción de nuestros clientes es nuestra mejor carta de presentación</p>
+        </div>
+        <div class="testimonios-slider fade-in">
+            <div class="testimonios-track" id="testimoniosTrack">
+                <div class="testimonio-card">
+                    <div class="testimonio-content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <blockquote>"Increíble trabajo en nuestra boda. Capturó momentos que ni siquiera sabíamos que habían pasado. Las fotos son simplemente perfectas y el video nos hizo llorar de emoción. ¡Súper recomendado!"</blockquote>
+                        <div class="testimonio-autor">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100" alt="María">
+                            <div class="testimonio-autor-info">
+                                <h4>María y Carlos Mendoza</h4>
+                                <span>Boda - Diciembre 2024, Piura</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonio-card">
+                    <div class="testimonio-content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <blockquote>"Los quinceaños de mi hija quedaron hermosos. Muy profesional, puntual y con excelente trato. Las fotos quedaron como de revista y el video con drone fue espectacular. ¡Gracias por todo!"</blockquote>
+                        <div class="testimonio-autor">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100" alt="Laura">
+                            <div class="testimonio-autor-info">
+                                <h4>Laura Sánchez de Rivera</h4>
+                                <span>Quinceaños - Noviembre 2024, Sullana</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonio-card">
+                    <div class="testimonio-content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <blockquote>"Contratamos el servicio para el bautizo de nuestro bebé y quedamos encantados. Fotos naturales, espontáneas y muy emotivas. La entrega fue super rápida. Sin duda volveremos a contratarlos."</blockquote>
+                        <div class="testimonio-autor">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100" alt="Roberto">
+                            <div class="testimonio-autor-info">
+                                <h4>Roberto y Ana García</h4>
+                                <span>Bautizo - Octubre 2024, Piura</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonios-dots">
+                <div class="dot active" onclick="goToTestimonio(0)"></div>
+                <div class="dot" onclick="goToTestimonio(1)"></div>
+                <div class="dot" onclick="goToTestimonio(2)"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAQUETES -->
+    <section class="paquetes" id="paquetes">
+        <div class="section-title fade-in">
+            <span>Precios</span>
+            <h2>Nuestros Paquetes</h2>
+            <p>Elige el paquete que mejor se adapte a tu evento y presupuesto</p>
+        </div>
+        <div class="paquetes-grid">
+            <div class="paquete-card fade-in">
+                <h3>Básico</h3>
+                <p class="subtitulo">Ideal para eventos pequeños</p>
+                <div class="precio-paquete">S/ 700 <span>soles</span></div>
+                <ul>
+                    <li><i class="fas fa-check"></i> 3 horas de cobertura</li>
+                    <li><i class="fas fa-check"></i> 100 fotos editadas</li>
+                    <li><i class="fas fa-check"></i> Entrega digital (USB + Nube)</li>
+                    <li><i class="fas fa-check"></i> 1 fotógrafo profesional</li>
+                    <li><i class="fas fa-check"></i> Galería online privada</li>
+                    <li><i class="fas fa-times"></i> Video no incluido</li>
+                    <li><i class="fas fa-times"></i> Álbum no incluido</li>
+                </ul>
+                <a href="#contacto" class="btn-paquete">Elegir Paquete</a>
+            </div>
+            <div class="paquete-card destacado fade-in">
+                <div class="paquete-badge">Más Popular</div>
+                <h3>Premium</h3>
+                <p class="subtitulo">El favorito de nuestros clientes</p>
+                <div class="precio-paquete">S/ 1,800 <span>soles</span></div>
+                <ul>
+                    <li><i class="fas fa-check"></i> 8 horas de cobertura</li>
+                    <li><i class="fas fa-check"></i> 300 fotos editadas</li>
+                    <li><i class="fas fa-check"></i> Video resumen de 5 minutos</li>
+                    <li><i class="fas fa-check"></i> 2 fotógrafos profesionales</li>
+                    <li><i class="fas fa-check"></i> Álbum impreso 30x30cm</li>
+                    <li><i class="fas fa-check"></i> Sesión pre-evento</li>
+                    <li><i class="fas fa-check"></i> Entrega en 15 días</li>
+                </ul>
+                <a href="#contacto" class="btn-paquete">Elegir Paquete</a>
+            </div>
+            <div class="paquete-card fade-in">
+                <h3>Élite</h3>
+                <p class="subtitulo">Cobertura completa premium</p>
+                <div class="precio-paquete">S/ 3,200 <span>soles</span></div>
+                <ul>
+                    <li><i class="fas fa-check"></i> Cobertura ilimitada</li>
+                    <li><i class="fas fa-check"></i> Fotos ilimitadas editadas</li>
+                    <li><i class="fas fa-check"></i> Video cinematográfico 15 min</li>
+                    <li><i class="fas fa-check"></i> Tomas con drone incluidas</li>
+                    <li><i class="fas fa-check"></i> 2 álbumes premium</li>
+                    <li><i class="fas fa-check"></i> Same day edit (video mismo día)</li>
+                    <li><i class="fas fa-check"></i> Sesión Trash the Dress</li>
+                </ul>
+                <a href="#contacto" class="btn-paquete">Elegir Paquete</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+        <div class="section-title fade-in">
+            <span>FAQ</span>
+            <h2>Preguntas Frecuentes</h2>
+            <p>Resolvemos tus dudas más comunes</p>
+        </div>
+        <div class="faq-container">
+            <div class="faq-item fade-in">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>¿Cuánto tiempo de anticipación debo reservar?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Recomendamos reservar con al menos 2-3 meses de anticipación, especialmente para bodas en temporada alta (abril-diciembre). Sin embargo, siempre puedes consultarnos por disponibilidad de última hora.</p>
+                </div>
+            </div>
+            <div class="faq-item fade-in">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>¿Cuál es la forma de pago?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Aceptamos 50% de adelanto para reservar la fecha y el 50% restante el día del evento. Puedes pagar en efectivo, transferencia bancaria, Yape o Plin.</p>
+                </div>
+            </div>
+            <div class="faq-item fade-in">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>¿En cuánto tiempo entregan las fotos y videos?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>El tiempo de entrega varía según el paquete: Básico 7 días, Premium 15 días, Élite 21 días. Siempre compartimos un adelanto de fotos en las primeras 48 horas.</p>
+                </div>
+            </div>
+            <div class="faq-item fade-in">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>¿Viajan fuera de Piura?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>¡Por supuesto! Cubrimos eventos en Sullana, Talara, Paita, Tumbes, Chiclayo y todo el norte del Perú. El costo de transporte y hospedaje se cotiza por separado.</p>
+                </div>
+            </div>
+            <div class="faq-item fade-in">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>¿Qué pasa si llueve el día del evento?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>No te preocupes, estamos preparados para cualquier clima. Contamos con equipo protegido y experiencia en capturar momentos increíbles bajo cualquier condición.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="contacto" id="contacto">
+        <div class="section-title fade-in">
+            <span>Contáctanos</span>
+            <h2>¿Listo Para Capturar Tus Momentos?</h2>
+            <p>Escríbenos y responderemos en menos de 24 horas</p>
+        </div>
+        <div class="contacto-container">
+            <div class="contacto-info fade-in">
+                <h3>Información de Contacto</h3>
+                <p>Estamos listos para hacer de tu evento algo inolvidable. ¡Contáctanos hoy mismo!</p>
+                
+                <div class="info-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <h4>Teléfono / WhatsApp</h4>
+                        <span>+51 963 867 010</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <h4>Email</h4>
+                        <span>info@capturamomentos.pe</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <h4>Ubicación</h4>
+                        <span>Piura, Perú</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <h4>Horario de Atención</h4>
+                        <span>Lun - Sáb: 9:00 AM - 7:00 PM</span>
+                    </div>
+                </div>
+
+                <div class="redes-sociales">
+                    <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+
+            <form class="contacto-form fade-in" id="contactForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nombre">Nombre completo *</label>
+                        <input type="text" id="nombre" placeholder="Tu nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Teléfono *</label>
+                        <input type="tel" id="telefono" placeholder="987 654 321" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Correo electrónico</label>
+                        <input type="email" id="email" placeholder="tu@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="fecha">Fecha del evento *</label>
+                        <input type="date" id="fecha" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="servicio">Tipo de evento *</label>
+                    <select id="servicio" required>
+                        <option value="">Selecciona un servicio</option>
+                        <option value="boda">Boda</option>
+                        <option value="quinceanios">Quinceaños</option>
+                        <option value="bautizo">Bautizo</option>
+                        <option value="cumpleanos">Cumpleaños</option>
+                        <option value="graduacion">Graduación</option>
+                        <option value="corporativo">Evento Corporativo</option>
+                        <option value="sesion">Sesión Fotográfica</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="mensaje">Cuéntanos sobre tu evento</label>
+                    <textarea id="mensaje" placeholder="Detalles adicionales: lugar, número de invitados, servicios que te interesan..."></textarea>
+                </div>
+                <button type="submit" class="btn-enviar">
+                    <i class="fas fa-paper-plane"></i> Enviar Mensaje
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- MAPA -->
+    <section class="mapa">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d254224.60015522!2d-80.76680895!3d-5.19449265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x904a104f09e4a8a5%3A0x6aa244c63329c7f1!2sPiura!5e0!3m2!1ses!2spe!4v1699900000000!5m2!1ses!2spe" allowfullscreen="" loading="lazy"></iframe>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <a href="#" class="logo"><i class="fas fa-camera"></i> Captura Momentos</a>
+                <p>Fotografía y video profesional para los momentos más importantes de tu vida. Más de 8 años capturando recuerdos en Piura y el norte del Perú.</p>
+                <div class="redes-sociales" style="margin-top: 1rem;">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Enlaces Rápidos</h4>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#galeria">Galería</a></li>
+                    <li><a href="#paquetes">Paquetes</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Servicios</h4>
+                <ul>
+                    <li><a href="#servicios">Bodas</a></li>
+                    <li><a href="#servicios">Quinceaños</a></li>
+                    <li><a href="#servicios">Bautizos</a></li>
+                    <li><a href="#servicios">Cumpleaños</a></li>
+                    <li><a href="#servicios">Eventos Corporativos</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <ul>
+                    <li><i class="fas fa-phone"></i> +51 963 867 010</li>
+                    <li><i class="fas fa-envelope"></i> info@capturamomentos.pe</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Piura, Perú</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Captura Momentos. Todos los derechos reservados.</p>
+            <p>Diseñado con <i class="fas fa-heart" style="color: var(--primary);"></i> en Piura, Perú</p>
+        </div>
+    </footer>
+
+    <!-- BOTONES FLOTANTES -->
+    <div class="floating-buttons">
+        <a href="https://wa.me/51963867010?text=Hola,%20me%20interesa%20información%20sobre%20sus%20servicios%20de%20fotografía%20y%20video%20para%20mi%20evento" class="whatsapp-float" target="_blank" title="Escríbenos por WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <div class="scroll-top" id="scrollTop" onclick="scrollToTop()" title="Volver arriba">
+            <i class="fas fa-arrow-up"></i>
+        </div>
+    </div>
+
+    <script>
+        // PRELOADER
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                document.getElementById('preloader').classList.add('hidden');
+            }, 1000);
+        });
+
+        // MENÚ MÓVIL
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        // NAVBAR AL SCROLL
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            const scrollTop = document.getElementById('scrollTop');
+            
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+                scrollTop.classList.add('visible');
+            } else {
+                navbar.classList.remove('scrolled');
+                scrollTop.classList.remove('visible');
+            }
+        });
+
+        // SCROLL TO TOP
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ANIMACIONES AL SCROLL
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        fadeElements.forEach(el => observer.observe(el));
+
+        // CONTADOR ANIMADO
+        const counters = document.querySelectorAll('.counter');
+        let countersAnimated = false;
+
+        function animateCounters() {
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const duration = 2000;
+                const step = target / (duration / 16);
+                let current = 0;
+
+                const updateCounter = () => {
+                    current += step;
+                    if (current < target) {
+                        counter.textContent = Math.floor(current) + '+';
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = target + '+';
+                    }
+                };
+                updateCounter();
+            });
+        }
+
+        const statsSection = document.querySelector('.stats-bar');
+        const statsObserver = new IntersectionObserver(function(entries) {
+            if (entries[0].isIntersecting && !countersAnimated) {
+                animateCounters();
+                countersAnimated = true;
+            }
+        }, { threshold: 0.5 });
+
+        statsObserver.observe(statsSection);
+
+        // LIGHTBOX
+        const galeriaImages = [
+            { src: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=1200', title: 'Boda María & Carlos', desc: 'Piura, 2024' },
+            { src: 'https://images.unsplash.com/photo-1519340241574-2cec6aef0c01?w=1200', title: 'XV Años Luciana', desc: 'Piura, 2024' },
+            { src: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1200', title: 'Ceremonia Rosa & Pedro', desc: 'Piura, 2024' },
+            { src: 'https://images.unsplash.com/photo-1544776193-352d25ca82cd?w=1200', title: 'Bautizo Matías', desc: 'Piura, 2024' },
+            { src: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200', title: 'Evento Empresarial', desc: 'Piura, 2024' },
+            { src: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=1200', title: 'Recepción Ana & Luis', desc: 'Piura, 2024' }
+        ];
+
+        let currentImageIndex = 0;
+
+        function openLightbox(index) {
+            currentImageIndex = index;
+            updateLightboxImage();
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function changeSlide(direction) {
+            currentImageIndex += direction;
+            if (currentImageIndex >= galeriaImages.length) currentImageIndex = 0;
+            if (currentImageIndex < 0) currentImageIndex = galeriaImages.length - 1;
+            updateLightboxImage();
+        }
+
+        function updateLightboxImage() {
+            const img = galeriaImages[currentImageIndex];
+            document.getElementById('lightbox-img').src = img.src;
+            document.getElementById('lightbox-title').textContent = img.title;
+            document.getElementById('lightbox-desc').textContent = img.desc;
+        }
+
+        // Cerrar lightbox con ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') changeSlide(1);
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+        });
+
+        // FILTROS DE GALERÍA
+        const filtros = document.querySelectorAll('.filtro-btn');
+        const galeriaItems = document.querySelectorAll('.galeria-item');
+
+        filtros.forEach(filtro => {
+            filtro.addEventListener('click', function() {
+                filtros.forEach(f => f.classList.remove('active'));
+                this.classList.add('active');
+                
+                const categoria = this.getAttribute('data-filter');
+                
+                galeriaItems.forEach(item => {
+                    if (categoria === 'todos' || item.getAttribute('data-category') === categoria) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // TESTIMONIOS SLIDER
+        let currentTestimonio = 0;
+        const testimoniosTrack = document.getElementById('testimoniosTrack');
+        const dots = document.querySelectorAll('.dot');
+
+        function goToTestimonio(index) {
+            currentTestimonio = index;
+            testimoniosTrack.style.transform = `translateX(-${index * 100}%)`;
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+        }
+
+        // Auto slide testimonios
+        setInterval(() => {
+            currentTestimonio = (currentTestimonio + 1) % 3;
+            goToTestimonio(currentTestimonio);
+        }, 5000);
+
+        // FAQ
+        function toggleFaq(element) {
+            const item = element.parentElement;
+            const isActive = item.classList.contains('active');
+            
+            // Cerrar todos
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+            
+            // Abrir el clickeado si no estaba activo
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        }
+
+        // FORMULARIO
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const nombre = document.getElementById('nombre').value;
+            const telefono = document.getElementById('telefono').value;
+            const servicio = document.getElementById('servicio').value;
+            const fecha = document.getElementById('fecha').value;
+            const mensaje = document.getElementById('mensaje').value;
+
+            // Crear mensaje de WhatsApp
+            const whatsappMessage = `¡Hola! Me interesa sus servicios.%0A%0A*Nombre:* ${nombre}%0A*Teléfono:* ${telefono}%0A*Servicio:* ${servicio}%0A*Fecha del evento:* ${fecha}%0A*Mensaje:* ${mensaje}`;
+            
+            window.open(`https://wa.me/51963867010?text=${whatsappMessage}`, '_blank');
+            
+            alert('¡Gracias por tu mensaje! Te redirigiremos a WhatsApp para continuar.');
+            this.reset();
+        });
+    </script>
+
+</body>
+</html>
